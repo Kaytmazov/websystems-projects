@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="favicon.ico">
+  <title>Kaytmazov</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="preloader"></div>
+
+  <div id="scene" data-pointer-events="true">
+    <div class="layer" data-depth="0.05">
+      <div class="background"></div>
+    </div>
+    <div class="layer" data-depth="0.1">
+      <div class="app-list">
+        <div class="app-item">
+          <a href="https://kaytmazov.bitbucket.io/mfc-logistics" target="_blank">
+            <img class="app-icon" src="img/mfc-logistics.png" alt="">
+            <h2 class="app-title">МФЦ Логистика</h2>
+          </a>
+        </div>
+        <div class="app-item">
+          <a href="https://kaytmazov.bitbucket.io/marwa-tour" target="_blank">
+            <img class="app-icon" src="img/marwa-tour.png" alt="">
+            <h2 class="app-title">Marwa Tour</h2>
+          </a>
+        </div>
+        <div class="app-item">
+          <a href="https://kaytmazov.bitbucket.io/mfc-socuslugi" target="_blank">
+            <img class="app-icon" src="img/mfc-socuslugi.png" alt="">
+            <h2 class="app-title">Социальные услуги</h2>
+          </a>
+        </div>
+        <div class="app-item">
+          <a href="https://kaytmazov.bitbucket.io/ais-statements" target="_blank">
+            <img class="app-icon" src="img/ais-statements.png" alt="">
+            <h2 class="app-title">АИС Ведомости</h2>
+          </a>
+        </div>
+        <div class="app-item">
+          <a href="https://kaytmazov.bitbucket.io/ais-service-center" target="_blank">
+            <img class="app-icon" src="img/ais-service-center.png" alt="">
+            <h2 class="app-title">Центр обслуживания</h2>
+          </a>
+        </div>
+        <div class="app-item">
+          <a href="https://kaytmazov.bitbucket.io/huntsman-mobile" target="_blank">
+            <img class="app-icon" src="img/huntsman-mobile.png" alt="">
+            <h2 class="app-title">Охотничьи угодья</h2>
+          </a>
+        </div>
+        <div class="app-item">
+          <a href="https://kaytmazov.bitbucket.io/hunter-05-mobile" target="_blank">
+            <img class="app-icon" src="img/hunter-mobile.png" alt="">
+            <h2 class="app-title">Охотуправление</h2>
+          </a>
+        </div>
+        <div class="app-item">
+          <a href="https://kaytmazov.bitbucket.io/mfc-mobile" target="_blank">
+            <img class="app-icon" src="img/mfc-mobile.png" alt="">
+            <h2 class="app-title">МФЦ - мобильное приложение</h2>
+          </a>
+        </div>
+        <div class="app-item">
+          <a href="https://kaytmazov.bitbucket.io/journal" target="_blank">
+            <img class="app-icon" src="img/journal.png" alt="">
+            <h2 class="app-title">Journal</h2>
+          </a>
+        </div>
+        <div class="app-item">
+          <a href="https://kaytmazov.bitbucket.io/samarqand" target="_blank">
+            <img class="app-icon" src="img/samarqand.png" alt="">
+            <h2 class="app-title">Samarqand</h2>
+          </a>
+        </div>
+        <div class="app-item">
+          <a href="https://kaytmazov.bitbucket.io/web-programming" target="_blank">
+            <img class="app-icon" src="img/web-programming.png" alt="">
+            <h2 class="app-title">WEB Programming</h2>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var preloader = document.querySelector('.preloader');
+
+    var hidePreloader = function () {
+      preloader.style.opacity = 1;
+      
+      var timerId = setInterval(function () {
+        preloader.style.opacity = preloader.style.opacity - 0.05;
+
+        if (preloader.style.opacity <= 0.05) {
+          clearInterval(timerId);
+          preloader.style.display = 'none';
+        }
+      }, 10);
+    };
+    
+    window.onload = function () {
+      setTimeout(hidePreloader, 1000);
+    };
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+  <script>
+    var scene = document.querySelector('#scene');
+    var parallaxInstance = new Parallax(scene);
+  </script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Kaytmazov</title>
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      display: -ms-flexbox;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+    }
+
+    @keyframes background {
+      0% {
+        -webkit-filter: blur(0);
+        -moz-filter: blur(0);
+        -o-filter: blur(0);
+        -ms-filter: blur(0);
+        filter: blur(0);
+      }
+      
+      30% {
+        -webkit-filter: blur(10);
+        -moz-filter: blur(10);
+        -o-filter: blur(10);
+        -ms-filter: blur(10);
+        filter: blur(10);
+      }
+
+      100% {
+        -webkit-filter: blur(60px);
+        -moz-filter: blur(60px);
+        -o-filter: blur(60px);
+        -ms-filter: blur(60px);
+        filter: blur(60px);
+      }
+    }
+
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+      background: #333 url(img/background-login.jpg) no-repeat center;
+      background-size: cover;
+      animation-name: background;
+      animation-delay: .5s;
+      animation-duration: 3s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes accessCode {
+      0% {
+        opacity: 0;
+      }
+      
+      30% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .d-none {
+      display: none !important;
+    }
+
+    .dialpad {
+      position: relative;
+      z-index: 100;
+      width: 300px;
+      opacity: 0;
+      animation-name: accessCode;
+      animation-delay: .5s;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+    }
+
+    .row {
+      display: -ms-flexbox;
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -15px;
+      margin-left: -15px;
+    }
+
+    .col {
+      flex-basis: 0;
+      flex-grow: 1;
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      min-height: 1px;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      padding: 0;
+      font-size: 35px;
+      font-weight: 200;
+      line-height: 1.5;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      color: #fff;
+      background-color: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      overflow: hidden;
+      outline: none;
+      transition: color 0.15s ease-in-out, 
+                  background-color 0.15s ease-in-out, 
+                  border-color 0.15s ease-in-out,
+                  box-shadow 0.15s ease-in-out;
+      user-select: none;      
+    }
+
+    .btn-outline {
+      border-color:#fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-outline:hover {
+      color: #212529;
+      background-color: #fff;
+      border-color: #fff;
+      box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-outline:active {
+      box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.20), 0 8px 20px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-backspace svg {
+      fill: #fff;
+      transition-duration: .3s;
+    }
+
+    .btn-backspace:hover svg {
+      fill: #f44336;
+    }
+
+    .btn-backspace:active svg {
+      fill: #ff5722;
+    }
+
+    @keyframes error {
+      from, to {
+        transform: translate3d(0, 0, 0);
+      }
+
+      10%, 30%, 50%, 70%, 90% {
+        transform: translate3d(-3px, 0, 0);
+      }
+
+      20%, 40%, 60%, 80% {
+        transform: translate3d(3px, 0, 0);
+      }
+    }
+
+    .access-code-screen {
+      margin-bottom: 45px;
+      margin-top: 35px;
+      text-align: center;
+      user-select: none;
+    }
+
+    .access-code-screen.error {
+      animation-name: error;
+      animation-duration: .6s;
+      animation-fill-mode: both;
+    }
+
+    .access-code-screen span {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin-left: 10px;
+      margin-right: 10px;
+      vertical-align: middle;
+      background-color: #ccc;
+      border-radius: 50%;
+    }
+
+    .access-code-screen span.active {
+      background-color: #008cff;
+    }
+
+    .error.access-code-screen span{
+      background-color: #f44336;
+    }
+
+    .access-code-screen input {
+      display: none;
+    }
+
+    .dialpad .row {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-image"></div>
+
+  <div class="dialpad">
+    <form class="access-code-screen">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <input type="password" name="pass" maxlength="4">
+    </form>
+    <div class="row">
+      <div class="col">
+        <button type="button" id="btn-49" class="btn btn-outline">1</button>
+      </div>
+      <div class="col">
+        <button type="button" id="btn-50" class="btn btn-outline">2</button>
+      </div>
+      <div class="col">
+        <button type="button" id="btn-51" class="btn btn-outline">3</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="button" id="btn-52" class="btn btn-outline">4</button>
+      </div>
+      <div class="col">
+        <button type="button" id="btn-53" class="btn btn-outline">5</button>
+      </div>
+      <div class="col">
+        <button type="button" id="btn-54" class="btn btn-outline">6</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="button" id="btn-55" class="btn btn-outline">7</button>
+      </div>
+      <div class="col">
+        <button type="button" id="btn-56" class="btn btn-outline">8</button>
+      </div>
+      <div class="col">
+        <button type="button" id="btn-57" class="btn btn-outline">9</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        <button type="button" id="btn-48" class="btn btn-outline">0</button>
+      </div>
+      <div class="col">
+        <button id="btn_backspace" type="button" class="btn btn-backspace d-none">
+          <svg width="36" height="28" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero"><path d="M8.5.072L0 13.672l8.5 13.6h26.844V.072H8.5zm25.244 25.6H9.387l-7.5-12 7.5-12h24.357v24z"/><path d="M15.11 20.638l5.834-5.835 5.834 5.835 1.132-1.132-5.835-5.834 5.835-5.834-1.132-1.132-5.834 5.835-5.834-5.835-1.132 1.132 5.835 5.834-5.835 5.834z"/></g></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/backend.js"></script>
+  <script src="js/access.js"></script>
+</body>
+</html>

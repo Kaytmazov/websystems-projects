@@ -1,0 +1,105 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.preloader {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #22313F url(img/icon-preloader.svg) center center no-repeat;
+  background-size: 44px;
+}
+
+.layer {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.background {
+  position: absolute;
+  left: -5%;
+  top: -5%;
+  width: 110%;
+  min-height: 110%;
+  background: #333 url(img/background.jpg) no-repeat center;
+  background-size: cover;
+}
+
+.app-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  padding-top: 30px;
+}
+
+.app-item {
+  width: 25%;
+  max-width: 180px;
+  flex-shrink: 0;
+  padding: 15px;
+}
+
+.app-item a {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  transition: transform .3s;
+}
+
+.app-item a:hover {
+  transform: scale(1.05);
+}
+
+.app-icon {
+  width: 100%;
+  height: auto;
+  border-radius: 20%;
+}
+
+.app-title {
+  margin: 0;
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (max-width: 420px) {
+  .app-list {
+    padding: 5px;
+    padding-top: 20px;
+  }
+
+  .app-item {
+    padding: 10px;
+  }
+
+  .app-title {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .app-item {
+    padding: 8px;
+  }
+
+  .app-title {
+    margin-top: 0;
+    font-size: 11px;
+  }
+}
